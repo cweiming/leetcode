@@ -1,8 +1,8 @@
 '''
 1. Two Sum
 @auth: Wei-Ming Chen, PhD
-@date:
-@update:
+@date: 2022/05/05
+@update: 2022/05/05
 @description:
     Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
 
