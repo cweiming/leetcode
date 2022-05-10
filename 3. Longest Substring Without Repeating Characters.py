@@ -2,7 +2,7 @@
 3. Longest Substring Without Repeating Characters
 @auth: Wei-Ming Chen, PhD
 @date: 2022/05/09
-@update: 2022/05/09
+@update: 2022/05/10
 @description:
 
     Given a string s, find the length of the longest substring without repeating characters.
@@ -38,28 +38,18 @@ import time
 
 class Solution:
     def lengthOfLongestSubstring(s):
-        if len(s) == 1: return 1
-
-        slist = list(s)
-        maxls, curls, p = "", "", {}
-        while slist:
-            s = slist.pop()
-            if s in p:
-                if len(curls) > len(maxls): maxls = curls
-                if curls and s in curls: curls = curls[curls.index(s)+1:] + s
-                else: curls += s
-            else:
-                curls += s
-                if curls in p: curls = None
-                else: p[s] = None
-            p[curls] = curls
-
-        return max(len(maxls), len(curls))
-
+        ws, i = 3, 0
+        if len(s) <= ws or len(set(s)) < ws: return len(set(s))
+        while True:
+            # print(i, ws, s[i:i+ws+1])
+            if len(set(s[i:i+ws+1])) > ws: ws += 1
+            elif i+1 == len(s): break
+            else: i += 1
+        return ws
 
 if __name__ == '__main__':
-    # Runtime: faster than 34.01% of Python3 online submissions
-    # Memory Usage: less than 5.94% of Python3 online submissions
+    # Runtime: faster than 24.17.01% of Python3 online submissions
+    # Memory Usage: less than 93.74% of Python3 online submissions
 
     # s = "abcabcbb"
     # Output: 3
@@ -71,7 +61,7 @@ if __name__ == '__main__':
     # Output: 3
 
     s = "arbsxtcgatcxyatcaxyzdxbegxd"
-    # Output: 8
+    Output: 8
 
     start_time = time.time()
     print("Output:", Solution.lengthOfLongestSubstring(s))
