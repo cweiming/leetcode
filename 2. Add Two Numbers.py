@@ -44,34 +44,33 @@ class ListNode:
 
 class Solution:
     def addTwoNumbers(l1, l2):
-        sv = 0; # stored value
-        curr = ListNode(next = ListNode())
-        ptr = curr.next
+        ptr = ListNode()
+        curr = ptr
         while l1 or l2:
             v1 = l1.val if l1 else 0
             v2 = l2.val if l2 else 0
-
-            if v1+v2+sv <= 9:
-                ptr.val = v1+v2+sv
-                sv = 0
-            if v1+v2+sv >= 10:
-                ptr.val = v1+v2+sv-10
-                sv = 1
-
             l1 = l1.next if l1 else None
             l2 = l2.next if l2 else None
+
+            ptr.next = (v1+v2+ptr.val) // 10
+            ptr.val = (v1+v2+ptr.val) % 10
+            #print(ptr.val, ptr.next)
             if l1 or l2:
-                ptr.next = ListNode()
+                ptr.next = ListNode(ptr.next)
                 ptr = ptr.next
             else:
-                break
-        if sv: ptr.next = ListNode(sv)
+                if ptr.next: ptr.next = ListNode(ptr.next)
+                else: ptr.next = None
 
-        return curr.next
+        while curr:
+            print(curr.val)
+            curr = curr.next if curr.next else None
+
+        return curr
 
 
 if __name__ == '__main__':
-    # Runtime: faster than 70.12% of Python3 online submissions
+    # Runtime: faster than 93.28% of Python3 online submissions
     # Memory Usage: less than 99.44% of Python3 online submissions
 
     # l1 = ListNode(2,ListNode(4,ListNode(3,None))) # [2,4,3]
@@ -88,6 +87,10 @@ if __name__ == '__main__':
 
     l1 = ListNode(2,ListNode(4,ListNode(9))) # [2,4,9]
     l2 = ListNode(5,ListNode(6,ListNode(4,ListNode(9)))) # [5,6,4,9]
+    # output [7,0,4,0,1]
+
+    # l1 = ListNode(0) # [0]
+    # l2 = ListNode(0) # [0]
     # output [7,0,4,0,1]
 
     start_time = time.time()
