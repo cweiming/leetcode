@@ -54,21 +54,24 @@ import time
 class Solution:
     def romanToInt(self, s: str) -> int:
         ri = {"I":1, "V":5, "X":10, "L":50, "C":100, "D":500, "M":1000}
-        n, i, slen = 0, 0, len(s)
-        while i < slen:
-            if i+1 == slen:
+        n, i = 0, 0
+        if len(s) == 1:
+            n += ri[s[-1]]
+        else:
+            n += ri[s[-1]]  if ri[s[-2]] >= ri[s[-1]] else 0
+
+        while i < len(s)-1:
+            if ri[s[i]] >= ri[s[i+1]]:
                 n += ri[s[i]]
             else:
-                if ri[s[i]] >= ri[s[i+1]]:
-                    n += ri[s[i]]
-                else:
-                    n += ri[s[i+1]] - ri[s[i]]
-                    i += 1
+                n += ri[s[i+1]] - ri[s[i]]
+                i += 1
             i += 1
+
         return n
 
 if __name__ == '__main__':
-    # Runtime: faster than 20.88% of Python3 online submissions
+    # Runtime: faster than 80.30% of Python3 online submissions
     # Memory Usage: less than 31.61% of Python3 online submissions
 
     s = "III"
@@ -80,6 +83,8 @@ if __name__ == '__main__':
     # s = "MCMXCIV"
     # Output: 1994
 
+    # s = "D"
+    # Output: 1994
 
     start_time = time.time()
     print("Output:", Solution().romanToInt(s))
