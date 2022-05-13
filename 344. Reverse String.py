@@ -35,7 +35,7 @@ class Solution:
         return s
 
 if __name__ == '__main__':
-    # Runtime: faster than 10.51% of Python3 online submissions
+    # Runtime: faster than 60.62% of Python3 online submissions
     # Memory Usage: less than 88.65% of Python3 online submissions
 
     s = ["h","e","l","l","o"]
