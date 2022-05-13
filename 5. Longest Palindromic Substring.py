@@ -2,7 +2,7 @@
 5. Longest Palindromic Substring
 @auth: Wei-Ming Chen, PhD
 @date: 2022/05/11
-@update: 2022/05/11
+@update: 2022/05/13
 @description:
 
     Given a string s, return the longest palindromic substring in s.
