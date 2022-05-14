@@ -36,32 +36,32 @@ import time
 
 class Solution:
     def isValid(self, s: str) -> bool:
-        bk, sk = {"(":")", "{":"}", "[":"]"}, []
+        bk, sk = {")":"(", "}":"{", "]":"["}, []
         for v in s:
-            if sk and sk[-1] in bk and v == bk[sk[-1]]: sk.pop()
+            if v in bk and sk and bk[v] == sk[-1]: sk.pop()
             else: sk.append(v)
         return sk == []
 
 if __name__ == '__main__':
-    # Runtime: faster than 75.69% of Python3 online submissions
-    # Memory Usage: less than 70.91% of Python3 online submissions
+    # Runtime: faster than 81.39% of Python3 online submissions
+    # Memory Usage: less than 98.19% of Python3 online submissions
 
-    # s = "()"
+    s = "((([])))"
     # Output: true
 
-    # s = "()[]{}"
+    s = "()[]{}"
     # Output: true
 
-    # s = "(]"
+    s = "(]"
     # Output: false
 
-    # s = "(){}}{"
+    s = "(){}}{"
     # Output: false
     
-    # s = "[()[(){}]]"
+    s = "[()[(){}]]"
     # Output: true
 
-    s = "[()[([){]}]]"
+    # s = "[()[([){]}]]"
     # Output: false
 
     start_time = time.time()
