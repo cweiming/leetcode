@@ -32,23 +32,23 @@ import time
 
 class Solution:
     def mySqrt(self, x: int) -> int:
-        i = x
-        while i:
-            if i*i < x: break
-            i //= 2
-        while i:
-            if i*i > x: return i-1
-            i += 1
-        return x
+        l,r = 0, x
+        m = (l+r)//2
+        while r-l > 1 :
+            if m*m == x: return m
+            elif m*m > x: r = m 
+            elif m*m < x: l = m 
+            m = (l+r)//2
+        return m if x > 1 else x
 
 if __name__ == '__main__':
-    # Runtime: faster than 18.61% of Python3 online submissions
-    # Memory Usage: less than 57.63.54% of Python3 online submissions
+    # Runtime: faster than 73.67% of Python3 online submissions
+    # Memory Usage: less than 96.42% of Python3 online submissions
 
-    x = 4
+    x = 501646110
     # Output: 2
 
-    x = 8
+    # x = 8
     # Output: 2
 
     start_time = time.time()
