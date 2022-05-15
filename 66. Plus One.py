@@ -49,11 +49,11 @@ class Solution:
             sum = (digits[-i]+carry)
             carry = sum // 10
             digits[-i] = sum % 10
-            if not carry: break
-        return [1] + digits if carry else digits
+            if not carry: return digits
+        return [1] + digits
 
 if __name__ == '__main__':
-    # Runtime: faster than 20.79% of Python3 online submissions
+    # Runtime: faster than 70.18% of Python3 online submissions
     # Memory Usage: less than 59.93% of Python3 online submissions
 
 
